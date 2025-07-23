@@ -1,7 +1,5 @@
 #![allow(unused)]
 
-/* This module will be taught in the class */
-
 struct LinkedList<T> {
     head: Option<Node<T>>,
 }

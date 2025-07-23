@@ -32,5 +32,59 @@ struct TxOut {
     // so u64 is enough to store all valid satoshis
 }
 
-// Try to include bitcoin related functionalities like serialization, computing addresses etc.,
-// You can add your own methods for different types and associated unit tests
+impl BlockChain {
+    fn new() -> Self {
+        BlockChain {
+            blocks: List::new(),
+        }
+    }
+    
+    pub fn add_new_block(&mut self, block: Block) {
+        self.blocks.push_back(block);
+    }
+    
+}
+
+impl Block {
+    fn new(hash: String, id: u128) -> Self {
+        Block {
+            hash,
+            id,
+            transactions: List::new()
+        }
+    }
+    
+    pub fn add_transactions(&mut self, transaction: Transaction) {
+        self.transactions.push_back(transaction);
+    }
+}
+
+impl Transaction {
+    fn new(txid: String) -> Self {
+        Transaction { 
+            inputs: List::new(), 
+            outputs: List::new(), 
+            txid
+        }
+    }
+}
+
+impl TxIn {
+    fn new(prev_txid: String, out: usize, signature: String) -> Self {
+        TxIn { 
+            prev_txid, 
+            out, 
+            signature 
+        }
+    }
+}
+
+impl TxOut {
+    fn new(public_address: String, satoshis: u64) -> Self {
+        TxOut { 
+            public_address, 
+            satoshis
+        }
+    }
+}
+
